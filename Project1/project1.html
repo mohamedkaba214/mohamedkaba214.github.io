@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="project1.css">
+</head>
+<body>
+    <!-- Part 1 -->
+<section class="sec1">
+    <img src="pic1.jpg" alt="Background image for Part 1" class="background-img">
+    <div class="blocksec1">
+        <h1>We Create Elegant Solutions</h1>
+        <p>WE WORK HARD, WE PLAY HARD</p>
+    </div>
+    <div class="navigation">
+        <button class="burger-button" onclick="toggleNav()">|||</button>
+        <a href="#" class="login-button" onclick="openLoginModal()">Login</a>
+    </div>
+    <div class="itemleft">STUDIO</div>
+</section>
+
+<!-- Modal for Login/Register -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+        <h2>Login / Register</h2>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Login')">Login</button>
+            <button class="tablinks" onclick="openTab(event, 'Register')">Register</button>
+        </div>
+
+        <div id="Login" class="tabcontent">
+            <form id="loginForm">
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" name="loginUsername" required><br><br>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="Register" class="tabcontent">
+            <form id="registerForm">
+                <label for="registerUsername">Username:</label>
+                <input type="text" id="registerUsername" name="registerUsername" required><br><br>
+                <label for="registerPassword">Password:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required><br><br>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- Part 2 -->
+    <div class="part2">
+        <div class="image-row">
+            <div class="image-container" onclick="openModal('modal1')">
+                <img src="pic2.jpg" alt="Eclipse from space">
+                <h2>This is an eclipse image from space</h2>
+                <p>This was an amazing picture of the recent eclipse taken from space</p>
+            </div>
+            <div class="image-container" onclick="openModal('modal2')">
+                <img src="pic3.jpg" alt="Eclipse from earth">
+                <h2>This one is taken from earth with a simple view</h2>
+                <p>This is like 90% of sun coverage</p>
+            </div>
+            <div class="image-container" onclick="openModal('modal3')">
+                <img src="pic4.jpg" alt="Evolution of an eclipse">
+                <h2>The evolution of an eclipse</h2>
+                <p>These pictures symbolize different phases of an eclipse</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modals for Part 2 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Virtual Artifact 1</h2>
+            <p>This artifact is the most famous in the virtual gallery.</p>
+            <form id="product1Form">
+                <label for="quantity1">Enter how many virtual items you would like to purchase:</label>
+                <input type="number" id="quantity1" name="quantity1" min="1" required><br><br>
+                <button type="button" onclick="addToCart(1, 50)">Add to Cart</button>
+            </form>
+            <div id="summary1"></div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Virtual Artifact 2</h2>
+            <p>This artifact is the picture shot by a famous photograph!</p>
+            <form id="product2Form">
+                <label for="quantity2">Enter how many virtual items you would like to purchase:</label>
+                <input type="number" id="quantity2" name="quantity2" min="1" required><br><br>
+                <button type="button" onclick="addToCart(2, 75)">Add to Cart</button>
+            </form>
+            <div id="summary2"></div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Virtual Artifact 3</h2>
+            <p>This one is showed at the annual virtual event.</p>
+            <form id="product3Form">
+                <label for="quantity3">Enter how many virtual items you would like to purchase:</label>
+                <input type="number" id="quantity3" name="quantity3" min="1" required><br><br>
+                <button type="button" onclick="addToCart(3, 100)">Add to Cart</button>
+            </form>
+            <div id="summary3"></div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+    
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+    
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    
+        // Default to open the Login tab
+        document.getElementsByClassName("tablinks")[0].click();
+    </script>
+   
+   <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+    
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+    
+        function addToCart(productNumber, unitPrice) {
+            var quantity = document.getElementById('quantity' + productNumber).value;
+            var summary = document.getElementById('summary' + productNumber);
+            if (quantity && quantity > 0) {
+                var total = quantity * unitPrice;
+                summary.innerHTML = `Great! Order of ${quantity} items is received, total price is $${total}.`;
+            } else {
+                summary.innerHTML = "Please enter a valid quantity.";
+            }
+        }
+    </script>
+    <script>
+        function toggleNav() {
+            var x = document.getElementById("navTabs");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
